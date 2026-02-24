@@ -12,14 +12,14 @@ namespace WarGame.Core
         /// All cards in a deck
         /// </summary>
         public Stack<Card> Cards;
-        /// <summary>
-        /// Add cards to the deck
-        /// </summary>
-        /// <param name="card"></param>
         public Deck()
         {
             Cards = new Stack<Card>();
         }
+        /// <summary>
+        /// Add cards to the deck
+        /// </summary>
+        /// <param name="card"></param>
         public void AddCard(Card card)
         {
             Cards.Push(card);
@@ -60,6 +60,8 @@ namespace WarGame.Core
                 temp.Remove(rand);
             }
         }
+
+        ////////////////////////////// Make sure to add dealing cards later//////////////////////////////////////////////
 
     }
 }
