@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WarGame.Core.Enums
 {
-    internal enum Rank
+    public enum Rank
     {
         Two = 2,
         Three = 3,

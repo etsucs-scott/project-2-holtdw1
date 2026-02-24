@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WarGame.Core.Enums
 {
-    internal enum Suit
+    public enum Suit
     {
         Clubs = 1,
         Spades = 2,

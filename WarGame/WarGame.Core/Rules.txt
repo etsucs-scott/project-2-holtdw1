@@ -1,0 +1,69 @@
+﻿-------------------Task 1 — Model Cards and Decks--------------------------------------
+
+     Create a Card class with Suit and Rank (2 through Ace). 
+    Cards must be comparable by rank (Ace high).
+    Create a Deck class that holds a Stack<Card>. 
+    Initialize the deck with a standard 52-card set (4 suits × 13 ranks) and shuffle it.
+
+---------------------Task 2 — Implement the War Engine----------------------------------------
+
+Use these required classes and structures:
+
+    Hand holds a Queue<Card> for each player.
+    PlayerHands holds a Dictionary<string, Hand> keyed by player name.
+    PlayedCards holds a Dictionary<string, Card> of each round’s face-up cards.
+    Distribute the Deck evenly to all players at start.
+
+Rules (modified for this project):
+
+    Rank order (low to high): 2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A. Suits are ignored.
+    Each round: all players with cards reveal the top card from their hand.
+    Highest rank wins the round and collects all played cards.
+    On a tie for highest rank, only the tied players play a tiebreaker round.
+    Cards from tied rounds stay in a shared pot; the eventual winner takes the entire pot.
+    Each tiebreaker round is one additional face-up card (no face-down cards).
+    If a player has 0 cards at the start of a round, they are eliminated.
+    If a tied player cannot play a tiebreaker card, they are eliminated immediately.
+    Play continues until one player holds all cards or a round limit is reached.
+
+Pot Management (Required)
+
+    Use a List<Card> as the pot.
+    All cards revealed in a round go into the pot immediately.
+    If only some players tie, the non-tied players’ cards still go into the pot.
+    Winner takes the entire pot and adds cards to the back of their queue in the order played.
+
+Dealing (Required)
+
+    Deal one card at a time in round-robin order.
+    If cards don’t divide evenly (e.g., 52 cards / 3 players), the first players in order get the extra cards.
+
+Round Limit (Required)
+
+    Set a hard cap of 10,000 rounds.
+    If the cap is reached, the winner is the player with the most cards.
+    If still tied, declare a draw.
+
+------------------------Task 3 — Console Runner + Reporting------------------------------------
+
+The console app should do the following:
+
+    Support 2, 3, or 4 players (prompt or command-line argument).
+    Use default names: Player 1, Player 2, etc.
+    Print each round’s winner and current card counts.
+    Report ties and tiebreaker results clearly.
+    End cleanly when a player wins and report the winner.
+
+------------------------------Task 4 — UML Diagram-----------------------------
+
+    Create a UML class diagram for the required classes.
+    Show relationships (inheritance/aggregation/composition) where appropriate.
+    Submit your .asta file or a PDF/PNG export.
+
+-----------------------------Task 5 — README.md------------------------------
+
+    Explain how to build and run the game.
+    Document how player count is chosen (prompt or arguments).
+    Include a short submission note referencing your GitHub Classroom repo.
+
+Add code comments for each class, each function, and any non-obvious or tricky code blocks. 
