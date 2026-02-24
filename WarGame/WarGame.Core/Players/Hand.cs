@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using WarGame.Core.Enums;
 using WarGame.Core.Cards;
 using WarGame.Core.Players;
+using WarGame.Core.Game_Logic;
 
 namespace WarGame.Core.Players
 {
-    internal class Hand
+    public class Hand
     {
         /// <summary>
         /// The cards in a player's hand

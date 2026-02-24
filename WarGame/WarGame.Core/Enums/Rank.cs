@@ -6,9 +6,13 @@ using System.Threading.Tasks;
 using WarGame.Core.Enums;
 using WarGame.Core.Cards;
 using WarGame.Core.Players;
+using WarGame.Core.Game_Logic;
 
 namespace WarGame.Core.Enums
 {
+    /// <summary>
+    /// The number on a card
+    /// </summary>
     public enum Rank
     {
         Two = 2,

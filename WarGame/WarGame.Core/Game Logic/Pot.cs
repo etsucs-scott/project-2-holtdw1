@@ -8,11 +8,9 @@ using WarGame.Core.Cards;
 using WarGame.Core.Players;
 using WarGame.Core.Game_Logic;
 
-namespace WarGame.Core.Players
+namespace WarGame.Core.Game_Logic
 {
-    public class Player
+    public class Pot
     {
-        public string Name { get; set; }
-        public Hand PlayerHand { get; set; }
     }
 }
