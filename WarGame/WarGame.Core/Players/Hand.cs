@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WarGame.Core.Enums;
+using WarGame.Core.Cards;
+using WarGame.Core.Players;
 
-namespace WarGame.Core
+namespace WarGame.Core.Players
 {
     internal class Hand
     {
@@ -25,8 +28,8 @@ namespace WarGame.Core
         /// Remove a card from a hand
         /// </summary>
         /// <param name="card"></param>
-        public void RemoveCard(Card card) 
-        { 
+        public void RemoveCard(Card card)
+        {
             Cards.Dequeue();
             Console.WriteLine("Card removed from hand.");
         }

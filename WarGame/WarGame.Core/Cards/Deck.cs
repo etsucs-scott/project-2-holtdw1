@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WarGame.Core
+namespace WarGame.Core.Cards
 {
     internal class Deck
     {
@@ -59,6 +59,8 @@ namespace WarGame.Core
                 Cards.Push(rand);
                 temp.Remove(rand);
             }
+            Console.WriteLine("Shuffled!");
+
         }
 
         ////////////////////////////// Make sure to add dealing cards later//////////////////////////////////////////////
