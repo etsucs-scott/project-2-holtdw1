@@ -14,5 +14,10 @@ namespace WarGame.Core.Players
     {
         public string Name { get; set; }
         public Hand PlayerHand { get; set; }
+        public Player(string name, Hand hand) 
+        {
+            Name = name;
+            PlayerHand = hand;
+        }
     }
 }

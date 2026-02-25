@@ -16,6 +16,10 @@ namespace WarGame.Core.Players
         /// The cards in a player's hand
         /// </summary>
         public Queue<Card> Cards;
+        public Hand(Queue<Card> hand)
+        {
+            hand = Cards;
+        }
         /// <summary>
         /// Add a card to the hand
         /// </summary>

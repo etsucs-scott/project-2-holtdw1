@@ -51,7 +51,7 @@ namespace WarGame.Core.Cards
             //The deck will have 52 cards, so run that many times to get them all
             for (int i = 0; i < 52; i++)
             {
-                //Add the first card, then remove it
+                //Add the first card, then remove it from the stack
                 temp.Add(Cards.Peek());
                 Cards.Pop();
             }
