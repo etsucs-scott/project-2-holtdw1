@@ -10,10 +10,10 @@ namespace WarGame.Core.Cards
         public Rank Rank { get; set; }
         public Suit Suit { get; set; }
 
-        public Card(Rank rank, Suit suit)
+        public Card(int rank, int suit)
         {
-            Rank = rank;
-            Suit = suit;
+            Rank = (Rank)rank;
+            Suit = (Suit)suit;
         }
     }
 }

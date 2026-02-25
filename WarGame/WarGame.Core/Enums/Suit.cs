@@ -15,9 +15,9 @@ namespace WarGame.Core.Enums
     /// </summary>
     public enum Suit
     {
-        Clubs = 1,
-        Spades = 2,
-        Diamonds = 3,
-        Hearts = 4
+        Clubs = 0,
+        Spades = 1,
+        Diamonds = 2,
+        Hearts = 3
     }
 }
