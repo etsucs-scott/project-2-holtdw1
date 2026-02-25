@@ -12,5 +12,13 @@ namespace WarGame.Core.Game_Logic
 {
     public class Pot
     {
+        /// <summary>
+        /// The cards in the pot
+        /// </summary>
+        public List<Card> Cards;
+        public Pot()
+        {
+            Cards = new List<Card>();
+        }
     }
 }

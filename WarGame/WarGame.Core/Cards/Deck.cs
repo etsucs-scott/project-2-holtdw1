@@ -45,9 +45,11 @@ namespace WarGame.Core.Cards
         {
             //Make a new random variable to use for variation
             Random r = new Random();
+
             //This temporary list is to put the cards in the deck somewhere for a moment while we shuffle
             //Like putting them in a shuffling machine, I think (those probably exist)
             List<Card> temp = new List<Card>();
+
             //The deck will have 52 cards, so run that many times to get them all
             for (int i = 0; i < 52; i++)
             {
@@ -59,9 +61,9 @@ namespace WarGame.Core.Cards
             {
                 //This makes sure that whatever random card gets chosen, that it's removed from the list
                 //This way, I don't get duplicates (I hope)
-                Card rand = temp[r.Next(temp.Count())];
-                Cards.Push(rand);
-                temp.Remove(rand);
+                Card rand = temp[r.Next(temp.Count())]; //assign a random card from the temp list
+                Cards.Push(rand);//take that random card, and put it in the stack
+                temp.Remove(rand);//remove it from the temp list, so we don't have duplicates
             }
             Console.WriteLine("Shuffled!");
 
