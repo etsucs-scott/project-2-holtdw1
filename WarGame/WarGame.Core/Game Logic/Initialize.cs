@@ -2,19 +2,23 @@
 using WarGame.Core.Cards;
 using WarGame.Core.Players;
 using WarGame.Core.Game_Logic;
+using System.Xml.Linq;
+using System.Threading.Channels;
 
 
 namespace WarGame.Core.Game_Logic
 {
-    internal class Initialize //have this class make each card and shuffle to initialize the deck
+    internal class Initialize //have this class make each card and shuffle to initialize the deck, and make player objects
     {
-        /* Thinking out loud, as I'm not sure how to do this yet
-         * 
-         * I should make each card. So I need a loop that runs, and makes each card only once
-         * It doesn't have to be random, so I could hard code each card; I probably shouldn't
-         * 
-         * I could go by suit: for diamonds, make one of each rank, then move on to the next suit. 
-         */
+        public int PlayerCount { get; set; }
+        public List<Player> Players { get; set; }
+        public Initialize()
+        {
+            PlayerCount = Players.Count;
+        }
+        /// <summary>
+        /// Initializes the deck, and creates each card. Then, shuffles them
+        /// </summary>
         public void MakeDeck()
         {
             Deck deck = new Deck();//actually make the deck object
@@ -26,6 +30,30 @@ namespace WarGame.Core.Game_Logic
                     Card card = new Card(rank, suit);//hopefully, this will make one card per rank per suit
                     deck.AddCard(card);//add the new card to the deck, and the next loop would redefine "card"
                 }
+            }
+            deck.Shuffle();
+        }
+        /// <summary>
+        /// Makes each player specified
+        /// </summary>
+        /// <param name="players"></param>
+        public void MakePlayers(int players)
+        {
+            PlayerCount = players;
+            int PlayersMade = 0;
+            Dealer dealer = new Dealer();
+
+            while (PlayersMade < PlayerCount)
+            {
+                Console.WriteLine($"Enter player name: ");
+                string name = Console.ReadLine();
+                Player player = new Player(name, null);
+                PlayersMade++;
+                Console.WriteLine($"Players created: {PlayersMade} / {PlayerCount}");
+            }
+            foreach (Player player in Players)
+            {
+                //make player
             }
         }
     }
