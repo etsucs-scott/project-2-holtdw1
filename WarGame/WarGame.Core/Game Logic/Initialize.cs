@@ -8,7 +8,7 @@ using System.Threading.Channels;
 
 namespace WarGame.Core.Game_Logic
 {
-    internal class Initialize //have this class make each card and shuffle to initialize the deck, and make player objects
+    internal class Table //have this class make each card and shuffle to initialize the deck, and make player objects
     {
         /// <summary>
         /// The amount of players specified
@@ -26,11 +26,11 @@ namespace WarGame.Core.Game_Logic
         /// Holds any user input
         /// </summary>
         public string Input { get; set; }
-
-        // make a dealer for the class to use
-        Dealer dealer = new Dealer();
-
-
+        public Dealer Dealer { get; set; }
+        public Table()
+        {
+            Dealer = new Dealer();
+        }
         /// <summary>
         /// Initializes the deck, and creates each card. Then, shuffles them
         /// </summary>
@@ -48,8 +48,6 @@ namespace WarGame.Core.Game_Logic
             }
             deck.Shuffle();
         }
-
-
         /// <summary>
         /// Makes each player specified
         /// </summary>
@@ -59,7 +57,7 @@ namespace WarGame.Core.Game_Logic
             Message = "This will remove all current players, and allow recreation. Are you sure? (Y/N)";
             if (Input.ToUpper() == "Y" || Input.ToUpper() == "YES")
             {
-                dealer.Players.Clear();
+                Dealer.Players.Clear();
                 PlayerCount = players; //declare the playercount to track how many there are
                 int PlayersMade = 0;//make a temp variable to break the loop
 
@@ -69,7 +67,7 @@ namespace WarGame.Core.Game_Logic
                     Input = null;//I can take in input at this point later, but null is used to prevent errors for now
                     Player player = new Player(Input, null);
                     PlayersMade++;//this is here to make sure our loop breaks
-                    dealer.Players.Add(Input, player);//index the player's key and value to the dealer's dictonary
+                    Dealer.Players.Add(Input, player);//index the player's key and value to the dealer's dictonary
                     Message = $"{Input} added to the game! Players created: {PlayersMade} / {PlayerCount}";
                 }
             }
@@ -78,15 +76,19 @@ namespace WarGame.Core.Game_Logic
                 Message = "Process aborted.";
             }
         }
+        /// <summary>
+        /// Removes a player at their key value
+        /// </summary>
+        /// <param name="player"></param>
         public void RemovePlayer(Player player)
         {
             if (PlayerCount >= 1)
             {
                 Prompt = $"Enter the name of the player you want to remove: (Case sensitive)";
                 Input = null;
-                if (dealer.Players.ContainsKey(Input))
+                if (Dealer.Players.ContainsKey(Input))
                 {
-                    dealer.Players.Remove(Input); //prompt the user in the console to insert the name
+                    Dealer.Players.Remove(Input); //prompt the user in the console to insert the name
                     PlayerCount--;
                     Message = $"Player: {Input} removed.";
                 }
