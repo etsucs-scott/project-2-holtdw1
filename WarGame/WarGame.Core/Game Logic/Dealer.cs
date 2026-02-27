@@ -19,9 +19,15 @@ namespace WarGame.Core.Game_Logic
         /// Holds the names and object of the players
         /// </summary>
         public Dictionary<string, Player> Players { get; set; }
+        public Deck Deck { get; set; }
         public Dealer()
         {
             Players = new Dictionary<string, Player>();
+            Deck = new Deck();
+        }
+        public void DealCards()
+        {
+            Deck.Shuffle();
         }
     }
 }

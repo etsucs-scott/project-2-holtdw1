@@ -8,24 +8,12 @@ using System.Threading.Channels;
 
 namespace WarGame.Core.Game_Logic
 {
-    internal class Table //have this class make each card and shuffle to initialize the deck, and make player objects
+    internal class Table : Main
     {
         /// <summary>
         /// The amount of players specified
         /// </summary>
         public int PlayerCount { get; set; }
-        /// <summary>
-        /// The message that displays for user comprehension
-        /// </summary>
-        public string Message { get; set; }
-        /// <summary>
-        /// Handles any questions needed to ask the user
-        /// </summary>
-        public string Prompt { get; set; }
-        /// <summary>
-        /// Holds any user input
-        /// </summary>
-        public string Input { get; set; }
         public Dealer Dealer { get; set; }
         public Table()
         {
@@ -36,17 +24,14 @@ namespace WarGame.Core.Game_Logic
         /// </summary>
         public void MakeDeck()
         {
-            Deck deck = new Deck();//actually make the deck object
-
             for (int suit = 0; suit < 4; suit++)//my suits are labeled 0 to 3, so this should iterate once per suit
             {
                 for (int rank = 2; rank < 15; rank++)//my ranks are labeled 2 to 14, so this should iterate once per rank, too
                 {
                     Card card = new Card(rank, suit);//hopefully, this will make one card per rank per suit
-                    deck.AddCard(card);//add the new card to the deck, and the next loop would redefine "card"
+                    Dealer.Deck.AddCard(card);//add the new card to the deck, and the next loop would redefine "card"
                 }
             }
-            deck.Shuffle();
         }
         /// <summary>
         /// Makes each player specified
