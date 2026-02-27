@@ -20,5 +20,9 @@ namespace WarGame.Core.Game_Logic
         {
             Cards = new List<Card>();
         }
+        public void WinCards(Player player)
+        {
+
+        }
     }
 }

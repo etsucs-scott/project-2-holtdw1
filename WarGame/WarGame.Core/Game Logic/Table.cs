@@ -81,7 +81,7 @@ namespace WarGame.Core.Game_Logic
         /// </summary>
         /// <param name="player"></param>
         public void RemovePlayer(Player player)
-        {
+        { 
             if (PlayerCount >= 1)
             {
                 Prompt = $"Enter the name of the player you want to remove: (Case sensitive)";
