@@ -10,12 +10,27 @@ namespace WarGame.Core.Game_Logic
 {
     internal class Initialize //have this class make each card and shuffle to initialize the deck, and make player objects
     {
+        /// <summary>
+        /// The amount of players specified
+        /// </summary>
         public int PlayerCount { get; set; }
-        public List<Player> Players { get; set; }
-        public Initialize()
-        {
-            PlayerCount = Players.Count;
-        }
+        /// <summary>
+        /// The message that displays for user comprehension
+        /// </summary>
+        public string Message { get; set; }
+        /// <summary>
+        /// Handles any questions needed to ask the user
+        /// </summary>
+        public string Prompt { get; set; }
+        /// <summary>
+        /// Holds any user input
+        /// </summary>
+        public string Input { get; set; }
+
+        // make a dealer for the class to use
+        Dealer dealer = new Dealer();
+
+
         /// <summary>
         /// Initializes the deck, and creates each card. Then, shuffles them
         /// </summary>
@@ -33,27 +48,56 @@ namespace WarGame.Core.Game_Logic
             }
             deck.Shuffle();
         }
+
+
         /// <summary>
         /// Makes each player specified
         /// </summary>
         /// <param name="players"></param>
         public void MakePlayers(int players)
         {
-            PlayerCount = players;
-            int PlayersMade = 0;
-            Dealer dealer = new Dealer();
+            Message = "This will remove all current players, and allow recreation. Are you sure? (Y/N)";
+            if (Input.ToUpper() == "Y" || Input.ToUpper() == "YES")
+            {
+                dealer.Players.Clear();
+                PlayerCount = players; //declare the playercount to track how many there are
+                int PlayersMade = 0;//make a temp variable to break the loop
 
-            while (PlayersMade < PlayerCount)
-            {
-                Console.WriteLine($"Enter player name: ");
-                string name = Console.ReadLine();
-                Player player = new Player(name, null);
-                PlayersMade++;
-                Console.WriteLine($"Players created: {PlayersMade} / {PlayerCount}");
+                while (PlayersMade < PlayerCount)
+                {
+                    Prompt = $"Enter player name: "; //this is for implimentation later on, should the output not be a console
+                    Input = null;//I can take in input at this point later, but null is used to prevent errors for now
+                    Player player = new Player(Input, null);
+                    PlayersMade++;//this is here to make sure our loop breaks
+                    dealer.Players.Add(Input, player);//index the player's key and value to the dealer's dictonary
+                    Message = $"{Input} added to the game! Players created: {PlayersMade} / {PlayerCount}";
+                }
             }
-            foreach (Player player in Players)
+            else
             {
-                //make player
+                Message = "Process aborted.";
+            }
+        }
+        public void RemovePlayer(Player player)
+        {
+            if (PlayerCount >= 1)
+            {
+                Prompt = $"Enter the name of the player you want to remove: (Case sensitive)";
+                Input = null;
+                if (dealer.Players.ContainsKey(Input))
+                {
+                    dealer.Players.Remove(Input); //prompt the user in the console to insert the name
+                    PlayerCount--;
+                    Message = $"Player: {Input} removed.";
+                }
+                else
+                {
+                    Message = $"The player ({Input}) doesn't exist. Try again, or check case and spelling";
+                }
+            }
+            else
+            {
+                Message = "You don't have any players yet.";
             }
         }
     }

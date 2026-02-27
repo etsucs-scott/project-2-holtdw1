@@ -10,14 +10,18 @@ using WarGame.Core.Game_Logic;
 
 namespace WarGame.Core.Game_Logic
 {
+    /// <summary>
+    /// The dealer holds the dictonary of players
+    /// </summary>
     internal class Dealer
     {
-        public int PlayerCount { get; set; }
+        /// <summary>
+        /// Holds the names and object of the players
+        /// </summary>
         public Dictionary<string, Player> Players { get; set; }
         public Dealer()
         {
             Players = new Dictionary<string, Player>();
-            PlayerCount = Players.Count;
         }
     }
 }
