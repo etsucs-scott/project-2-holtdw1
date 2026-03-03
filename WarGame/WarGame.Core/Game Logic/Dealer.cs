@@ -13,7 +13,7 @@ namespace WarGame.Core.Game_Logic
     /// <summary>
     /// The dealer holds the dictonary of players
     /// </summary>
-    internal class Dealer : Main
+    public class Dealer : Main
     {
         /// <summary>
         /// Holds the names and object of the players
@@ -29,6 +29,7 @@ namespace WarGame.Core.Game_Logic
         {
             Deck.Shuffle();
             Message = "Shuffled!";
+            //do actual dealing later
         }
     }
 }

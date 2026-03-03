@@ -8,7 +8,7 @@ using System.Threading.Channels;
 
 namespace WarGame.Core.Game_Logic
 {
-    internal class Table : Main
+    public class Table : Main
     {
         /// <summary>
         /// The amount of players specified
@@ -39,7 +39,7 @@ namespace WarGame.Core.Game_Logic
         /// <param name="players"></param>
         public void MakePlayers(int players)
         {
-            Message = "This will remove all current players, and allow recreation. Are you sure? (Y/N)";
+            Message = "This will remove all current players, and allow (re)creation. Are you sure? (Y/N)";
             if (Input.ToUpper() == "Y" || Input.ToUpper() == "YES")
             {
                 Dealer.Players.Clear();
