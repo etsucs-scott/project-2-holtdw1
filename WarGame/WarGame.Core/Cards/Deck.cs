@@ -10,7 +10,7 @@ using WarGame.Core.Game_Logic;
 
 namespace WarGame.Core.Cards
 {
-    public class Deck
+    public class Deck : Main
     {
         /// <summary>
         /// All cards in a deck
@@ -27,7 +27,7 @@ namespace WarGame.Core.Cards
         public void AddCard(Card card)
         {
             Cards.Push(card);
-            Console.WriteLine($"Card added to deck.");
+            Message = $"Card added to deck.";
         }
         /// <summary>
         /// Remove cards from the deck
@@ -36,7 +36,7 @@ namespace WarGame.Core.Cards
         public void RemoveCard(Card card)
         {
             Cards.Pop();
-            Console.WriteLine("Card removed from deck.");
+            Message = "Card removed from deck.";
         }
         /// <summary>
         /// Shuffles the deck
@@ -65,7 +65,7 @@ namespace WarGame.Core.Cards
                 Cards.Push(rand);//take that random card, and put it in the stack
                 temp.Remove(rand);//remove it from the temp list, so we don't have duplicates
             }
-            Console.WriteLine("Shuffled!");
+            Message = "Shuffled!";
 
         }
 

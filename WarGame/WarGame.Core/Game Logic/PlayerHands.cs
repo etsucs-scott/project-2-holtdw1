@@ -3,7 +3,7 @@ using WarGame.Core.Players;
 
 namespace WarGame.Core.Game_Logic
 {
-    public class PlayerHands
+    public class PlayerHands : Main
     {  
         /// <summary>
         /// Hands currently held
@@ -23,10 +23,10 @@ namespace WarGame.Core.Game_Logic
         /// </summary>
         /// <param name="player"></param>
         /// <param name="card"></param>
-        public void AddCard(Player player, Hand hand)
+        public void AddHand(Player player, Hand hand)
         {
             Hands[player.Name] = hand;
-            Console.WriteLine($"{player.Name} added");
+            Message = $"{player.Name}'s hand created";
         }
 
     }

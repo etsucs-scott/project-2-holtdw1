@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WarGame.Core.Game_Logic
 {
-    internal class Main
+    public class Main
     {
         /// <summary>
         /// The message that displays for user comprehension

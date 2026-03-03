@@ -10,7 +10,7 @@ using WarGame.Core.Game_Logic;
 
 namespace WarGame.Core.Game_Logic
 {
-    public class PlayedCards
+    public class PlayedCards : Main
     {
         /// <summary>
         /// Cards currently in play
@@ -30,10 +30,10 @@ namespace WarGame.Core.Game_Logic
         /// </summary>
         /// <param name="player"></param>
         /// <param name="card"></param>
-        public void AddCard(Player player, Card card)
+        public void PlayCard(Player player, Card card)
         {
             Cards[player.Name] = card;
-            Console.WriteLine($"{player.Name} played the {card.Rank} of {card.Suit}");
+            Message = $"{player.Name} played the {card.Rank} of {card.Suit}";
         }
     }
 }
