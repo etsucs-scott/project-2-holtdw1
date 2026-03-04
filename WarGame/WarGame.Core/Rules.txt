@@ -1,6 +1,6 @@
 ﻿-------------------Task 1 — Model Cards and Decks--------------------------------------
 
-     Create a Card class with Suit and Rank (2 through Ace). 
+    Create a Card class with Suit and Rank (2 through Ace). 
     Cards must be comparable by rank (Ace high).
     Create a Deck class that holds a Stack<Card>. 
     Initialize the deck with a standard 52-card set (4 suits × 13 ranks) and shuffle it.

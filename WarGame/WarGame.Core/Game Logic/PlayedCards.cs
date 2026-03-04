@@ -21,7 +21,7 @@ namespace WarGame.Core.Game_Logic
         /// </summary>
         /// <param name="player"></param>
         /// <param name="card"></param>
-        public PlayedCards() 
+        public PlayedCards() //this tracks what player played what card
         {
             Cards = new Dictionary<string, Card>();
         }
