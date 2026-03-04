@@ -16,13 +16,29 @@ namespace WarGame.Core.Game_Logic
         /// The cards in the pot
         /// </summary>
         public List<Card> Cards;
-        public Pot()
+        public Pot() //the pot will hold a list of cards to give to the winner. It doesn't care about who input the card
         {
             Cards = new List<Card>();
         }
+        /// <summary>
+        /// Adds a card to the pot
+        /// </summary>
+        /// <param name="card"></param>
+        public void AddCard(Card card)
+        {
+            Cards.Add(card);
+        }
+        /// <summary>
+        /// Adds the pot to a player's queue
+        /// </summary>
+        /// <param name="player"></param>
         public void WinCards(Player player)
         {
-
+            foreach(Card card in Cards)//hopefully this will increment through the list, and operate on each card
+            {
+                player.PlayerHand.AddCard(card);
+                Cards.Remove(card);
+            }
         }
     }
 }
