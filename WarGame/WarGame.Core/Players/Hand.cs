@@ -10,7 +10,7 @@ using WarGame.Core.Game_Logic;
 
 namespace WarGame.Core.Players
 {
-    public class Hand : Main
+    public class Hand
     {
         /// <summary>
         /// The cards in a player's hand
@@ -27,7 +27,7 @@ namespace WarGame.Core.Players
         public void AddCard(Card card)
         {
             Cards.Enqueue(card);
-            Message = "Card added to hand.";
+            Game.Message = "Card added to hand.";
         }
         /// <summary>
         /// Remove a card from a hand
@@ -36,7 +36,7 @@ namespace WarGame.Core.Players
         public void RemoveCard(Card card)
         {
             Cards.Dequeue();
-            Message = "Card removed from hand.";
+            Game.Message = "Card removed from hand.";
         }
 
     }
