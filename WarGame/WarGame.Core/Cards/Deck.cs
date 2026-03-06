@@ -10,13 +10,13 @@ using WarGame.Core.Game_Logic;
 
 namespace WarGame.Core.Cards
 {
-    public class Deck
+    public static class Deck
     {
         /// <summary>
         /// All cards in a deck
         /// </summary>
-        public Stack<Card> Cards;
-        public Deck()
+        public static Stack<Card> Cards;
+        static Deck()
         {
             Cards = new Stack<Card>();
         }
@@ -24,7 +24,7 @@ namespace WarGame.Core.Cards
         /// Add cards to the deck
         /// </summary>
         /// <param name="card"></param>
-        public void AddCard(Card card)
+        public static void AddCard(Card card)
         {
             Cards.Push(card);
             Game.Message = $"Card added to deck.";
@@ -33,7 +33,7 @@ namespace WarGame.Core.Cards
         /// Remove cards from the deck
         /// </summary>
         /// <param name="card"></param>
-        public void RemoveCard(Card card)
+        public static void RemoveCard(Card card)
         {
             Cards.Pop();
             Game.Message = "Card removed from deck.";
@@ -41,7 +41,7 @@ namespace WarGame.Core.Cards
         /// <summary>
         /// Shuffles the deck
         /// </summary>
-        public void Shuffle()
+        public static void Shuffle()
         {
             //Make a new random variable to use for variation
             Random r = new Random();

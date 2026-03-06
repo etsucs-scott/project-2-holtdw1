@@ -14,11 +14,6 @@ namespace WarGame.Core.Game_Logic
         /// The amount of players specified
         /// </summary>
         public int PlayerCount { get; set; }
-        public Dealer Dealer { get; set; }
-        public Table()
-        {
-            Dealer = new Dealer();
-        }
         /// <summary>
         /// Initializes the deck, and creates each card. Then, shuffles them
         /// </summary>
@@ -29,7 +24,7 @@ namespace WarGame.Core.Game_Logic
                 for (int rank = 2; rank < 15; rank++)//my ranks are labeled 2 to 14, so this should iterate once per rank, too
                 {
                     Card card = new Card(rank, suit);//hopefully, this will make one card per rank per suit
-                    Dealer.Deck.AddCard(card);//add the new card to the deck, and the next loop would redefine "card"
+                    Deck.AddCard(card);//add the new card to the deck, and the next loop would redefine "card"
                 }
             }
         }
