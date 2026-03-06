@@ -10,18 +10,18 @@ using WarGame.Core.Game_Logic;
 
 namespace WarGame.Core.Game_Logic
 {
-    public class PlayedCards
+    public static class PlayedCards
     {
         /// <summary>
         /// Cards currently in play
         /// </summary>
-        public Dictionary<string, Card> Cards;
+        public static Dictionary<string, Card> Cards;
         /// <summary>
         /// Holds which players played which cards
         /// </summary>
         /// <param name="player"></param>
         /// <param name="card"></param>
-        public PlayedCards() //this tracks what player played what card
+        static PlayedCards() //this tracks what player played what card
         {
             Cards = new Dictionary<string, Card>();
         }
@@ -30,10 +30,11 @@ namespace WarGame.Core.Game_Logic
         /// </summary>
         /// <param name="player"></param>
         /// <param name="card"></param>
-        public void PlayCard(Player player, Card card)
+        public static void PlayCard(Player player, Card card)
         {
             Cards[player.Name] = card;
             Game.Message = $"{player.Name} played the {card.Rank} of {card.Suit}";
+            Pot.AddCard(card);
         }
     }
 }
