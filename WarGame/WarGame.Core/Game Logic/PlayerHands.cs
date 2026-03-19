@@ -26,7 +26,6 @@ namespace WarGame.Core.Game_Logic
         public void AddHand(Player player, Hand hand)
         {
             Hands[player.Name] = hand;
-            Game.Message = $"{player.Name}'s hand created";
         }
 
     }

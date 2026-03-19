@@ -18,7 +18,7 @@ namespace WarGame.Core.Players
         public Queue<Card> Cards;
         public Hand(Queue<Card> hand)
         {
-            hand = Cards;
+            Cards = new Queue<Card>();
         }
         /// <summary>
         /// Add a card to the hand
@@ -27,16 +27,14 @@ namespace WarGame.Core.Players
         public void AddCard(Card card)
         {
             Cards.Enqueue(card);
-            Game.Message = "Card added to hand.";
         }
         /// <summary>
         /// Remove a card from a hand
         /// </summary>
         /// <param name="card"></param>
-        public void RemoveCard(Card card)
+        public void RemoveCard()
         {
             Cards.Dequeue();
-            Game.Message = "Card removed from hand.";
         }
 
     }

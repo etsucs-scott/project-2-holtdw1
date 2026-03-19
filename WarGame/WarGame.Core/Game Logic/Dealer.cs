@@ -19,9 +19,6 @@ namespace WarGame.Core.Game_Logic
         /// Holds the names and object of the players
         /// </summary>
         public static Dictionary<string, Player> Players { get; set; }
-        /// <summary>
-        /// The deck of cards
-        /// </summary>
         static Dealer()
         {
             Players = new Dictionary<string, Player>();
@@ -29,11 +26,9 @@ namespace WarGame.Core.Game_Logic
         /// <summary>
         /// Shuffles the deck and deals cards to players
         /// </summary>
-        public static void DealCards()
+        public static void Deal()
         {
             Deck.Shuffle();
-            Game.Message = "Shuffled!";
-            Game.Message = "Dealing cards...";
             while (Deck.Cards.Count > 0)
             {
                 foreach (var player in Players)
@@ -43,6 +38,7 @@ namespace WarGame.Core.Game_Logic
                         break;
                     }
                     player.Value.PlayerHand.AddCard(Deck.Cards.Pop());
+                    
                 }
             }
         }

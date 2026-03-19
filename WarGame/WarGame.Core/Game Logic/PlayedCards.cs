@@ -35,6 +35,7 @@ namespace WarGame.Core.Game_Logic
             Cards[player.Name] = card;
             Game.Message = $"{player.Name} played the {card.Rank} of {card.Suit}";
             Pot.AddCard(card);
+            Thread.Sleep(500);
         }
     }
 }

@@ -20,10 +20,9 @@ namespace WarGame.Core.Players
         /// The hand of a player
         /// </summary>
         public Hand PlayerHand { get; set; }
-        public Player(string name, Hand hand) 
+        public Player(string name) 
         {
             Name = name;
-            PlayerHand = hand;
         }
     }
 }

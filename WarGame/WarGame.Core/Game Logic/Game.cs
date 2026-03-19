@@ -13,12 +13,9 @@ namespace WarGame.Core.Game_Logic
         /// </summary>
         public static string Message { get; set; }
         /// <summary>
-        /// Handles any questions needed to ask the user
-        /// </summary>
-        public static string Prompt { get; set; }
-        /// <summary>
         /// Holds any user input
         /// </summary>
         public static string Input { get; set; }
+        public static bool Functional { get; set; }
     }
 }

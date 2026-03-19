@@ -1,23 +1,22 @@
-﻿using WarGame.Core.Enums;
-using WarGame.Core.Cards;
+﻿using WarGame.Core.Cards;
 using WarGame.Core.Players;
-using WarGame.Core.Game_Logic;
-using System.Xml.Linq;
-using System.Threading.Channels;
 
 
 namespace WarGame.Core.Game_Logic
 {
-    public class Table
+    /// <summary>
+    /// Table handles all of the back-end player and card creation
+    /// </summary>
+    public static class Table
     {
         /// <summary>
         /// The amount of players specified
         /// </summary>
-        public int PlayerCount { get; set; }
+        public static int PlayerCount { get; set; }
         /// <summary>
         /// Initializes the deck, and creates each card. Then, shuffles them
         /// </summary>
-        public void MakeDeck()
+        public static void MakeDeck()
         {
             for (int suit = 0; suit < 4; suit++)//my suits are labeled 0 to 3, so this should iterate once per suit
             {
@@ -32,40 +31,33 @@ namespace WarGame.Core.Game_Logic
         /// Makes each player specified
         /// </summary>
         /// <param name="players"></param>
-        public void MakePlayers(int players)
+        public static void MakePlayers(int players, List<string> names)
         {
-            Game.Message = "This will remove all current players, and allow (re)creation. Are you sure? (Y/N)";
-            if (Game.Input.ToUpper() == "Y" || Game.Input.ToUpper() == "YES")
-            {
-                Dealer.Players.Clear();
-                PlayerCount = players; //declare the playercount to track how many there are
-                int PlayersMade = 0;//make a temp variable to break the loop
+            Dealer.Players.Clear();
+            PlayerCount = players; //declare the playercount to track how many there are
+            int PlayersMade = 0;//make a temp variable to break the loop
 
-                while (PlayersMade < PlayerCount)
+            while (PlayersMade < PlayerCount)
+            {
+                for (int i = 0; i < players; i++)
                 {
-                    Game.Prompt = $"Enter player name: "; //this is for implimentation later on, should the output not be a console
-                    Game.Input = null;//I can take in input at this point later, but null is used to prevent errors for now
-                    Player player = new Player(Game.Input, null);
+                    Player player = new Player(names[i]);
                     PlayersMade++;//this is here to make sure our loop breaks
                     Dealer.Players.Add(Game.Input, player);//index the player's key and value to the dealer's dictonary
                     Game.Message = $"{Game.Input} added to the game! Players created: {PlayersMade} / {PlayerCount}";
+                    Thread.Sleep(500);
                 }
-            }
-            else
-            {
-                Game.Message = "Process aborted.";
             }
         }
         /// <summary>
         /// Removes a player at their key value
         /// </summary>
         /// <param name="player"></param>
-        public void RemovePlayer(Player player)
-        { 
+        public static void RemovePlayer(Player player)
+        {
             if (PlayerCount >= 1)
             {
-                Game.Prompt = $"Enter the name of the player you want to remove: (Case sensitive)";
-                Game.Input = null;
+                Game.Message = $"Enter the name of the player you want to remove: (Case sensitive)";
                 if (Dealer.Players.ContainsKey(Game.Input))
                 {
                     Dealer.Players.Remove(Game.Input); //prompt the user in the console to insert the name

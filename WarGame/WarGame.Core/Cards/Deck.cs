@@ -27,7 +27,6 @@ namespace WarGame.Core.Cards
         public static void AddCard(Card card)
         {
             Cards.Push(card);
-            Game.Message = $"Card added to deck.";
         }
         /// <summary>
         /// Remove cards from the deck
@@ -36,7 +35,6 @@ namespace WarGame.Core.Cards
         public static void RemoveCard(Card card)
         {
             Cards.Pop();
-            Game.Message = "Card removed from deck.";
         }
         /// <summary>
         /// Shuffles the deck
@@ -65,7 +63,6 @@ namespace WarGame.Core.Cards
                 Cards.Push(rand);//take that random card, and put it in the stack
                 temp.Remove(rand);//remove it from the temp list, so we don't have duplicates
             }
-            Game.Message = "Shuffled!";
 
         }
 
