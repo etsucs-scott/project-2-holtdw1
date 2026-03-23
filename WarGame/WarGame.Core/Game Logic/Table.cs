@@ -31,9 +31,9 @@ namespace WarGame.Core.Game_Logic
         /// Makes each player specified
         /// </summary>
         /// <param name="players"></param>
-        public static void MakePlayers(int players, List<string> names)
+        public static void MakePlayers(int players, List<string> names, Dealer dealer)
         {
-            Dealer.Players.Clear();
+            dealer.Players.Clear();
             PlayerCount = players; //declare the playercount to track how many there are
             int PlayersMade = 0;//make a temp variable to break the loop
 
@@ -43,7 +43,7 @@ namespace WarGame.Core.Game_Logic
                 {
                     Player player = new Player(names[i]);
                     PlayersMade++;//this is here to make sure our loop breaks
-                    Dealer.Players.Add(names[i], player);//index the player's key and value to the dealer's dictonary
+                    dealer.AddPlayer(names[i], player);//index the player's key and value to the dealer's dictonary
                 }
             }
         }
@@ -51,14 +51,14 @@ namespace WarGame.Core.Game_Logic
         /// Removes a player at their key value
         /// </summary>
         /// <param name="player"></param>
-        public static void RemovePlayer(Player player)
+        public static void RemovePlayer(Player player, Dealer dealer)
         {
             if (PlayerCount >= 1)
             {
                 Game.Message = $"Enter the name of the player you want to remove: (Case sensitive)";
-                if (Dealer.Players.ContainsKey(Game.Input))
+                if (dealer.Players.ContainsKey(Game.Input))
                 {
-                    Dealer.Players.Remove(Game.Input); //prompt the user in the console to insert the name
+                    dealer.Players.Remove(Game.Input); //prompt the user in the console to insert the name
                     PlayerCount--;
                     Game.Message = $"Player: {Game.Input} removed.";
                 }

@@ -3,6 +3,7 @@ using WarGame.Core.Players;
 
 
 Game.Functional = true;
+Dealer dealer = new();
 int menuOption; //was causing issues with validation later, so I had to assign this 
 while (Game.Functional == true)
 {
@@ -57,10 +58,10 @@ while (Game.Functional == true)
             }
         }
 
-        Table.MakePlayers(playersToMake, names);
-        Dealer.Deal();
+        Table.MakePlayers(playersToMake, names, dealer);
+        dealer.Deal();
 
-        foreach (Player player in Dealer.Players.Values)
+        foreach (Player player in dealer.Players.Values)
         {
             PlayerHands.AddHand(player, player.PlayerHand);
         }

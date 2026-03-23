@@ -23,6 +23,7 @@ namespace WarGame.Core.Players
         public Player(string name) 
         {
             Name = name;
+            PlayerHand = new(new Queue<Card>());
         }
     }
 }

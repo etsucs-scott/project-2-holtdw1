@@ -8,7 +8,7 @@ namespace WarGame.Core.Game_Logic
         /// <summary>
         /// Hands currently held
         /// </summary>
-        public static Dictionary<string, Hand> Hands;
+        public static Dictionary<string, Hand> Hands = new();
         /// <summary>
         /// Adds a new hand at a player's index key
         /// </summary>
