@@ -3,27 +3,18 @@ using WarGame.Core.Players;
 
 namespace WarGame.Core.Game_Logic
 {
-    public class PlayerHands
+    public static class PlayerHands
     {  
         /// <summary>
         /// Hands currently held
         /// </summary>
-        public Dictionary<string, Hand> Hands;
-        /// <summary>
-        /// Holds which hand belongs to what player
-        /// </summary>
-        /// <param name="player"></param>
-        /// <param name="card"></param>
-        public PlayerHands()
-        {
-            Hands = new Dictionary<string, Hand>();
-        }
+        public static Dictionary<string, Hand> Hands;
         /// <summary>
         /// Adds a new hand at a player's index key
         /// </summary>
         /// <param name="player"></param>
         /// <param name="card"></param>
-        public void AddHand(Player player, Hand hand)
+        public static void AddHand(Player player, Hand hand)
         {
             Hands[player.Name] = hand;
         }

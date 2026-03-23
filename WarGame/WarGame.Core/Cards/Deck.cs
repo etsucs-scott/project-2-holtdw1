@@ -32,9 +32,9 @@ namespace WarGame.Core.Cards
         /// Remove cards from the deck
         /// </summary>
         /// <param name="card"></param>
-        public static void RemoveCard(Card card)
+        public static Card RemoveCard()
         {
-            Cards.Pop();
+            return Cards.Pop();
         }
         /// <summary>
         /// Shuffles the deck

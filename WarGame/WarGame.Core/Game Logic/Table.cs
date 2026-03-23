@@ -43,9 +43,7 @@ namespace WarGame.Core.Game_Logic
                 {
                     Player player = new Player(names[i]);
                     PlayersMade++;//this is here to make sure our loop breaks
-                    Dealer.Players.Add(Game.Input, player);//index the player's key and value to the dealer's dictonary
-                    Game.Message = $"{Game.Input} added to the game! Players created: {PlayersMade} / {PlayerCount}";
-                    Thread.Sleep(500);
+                    Dealer.Players.Add(names[i], player);//index the player's key and value to the dealer's dictonary
                 }
             }
         }

@@ -37,8 +37,7 @@ namespace WarGame.Core.Game_Logic
                     {
                         break;
                     }
-                    player.Value.PlayerHand.AddCard(Deck.Cards.Pop());
-                    
+                    player.Value.PlayerHand.AddCard(Deck.RemoveCard());
                 }
             }
         }
