@@ -13,20 +13,20 @@ namespace WarGame.Core.Game_Logic
     /// <summary>
     /// The dealer holds the dictonary of players
     /// </summary>
-    public class Dealer
+    public static class Dealer
     {
         /// <summary>
         /// Holds the names and object of the players
         /// </summary>
-        public Dictionary<string, Player> Players { get; set; }
-        public Dealer()
+        public static Dictionary<string, Player> Players { get; set; }
+        static Dealer()
         {
             Players = new Dictionary<string, Player>();
         }
         /// <summary>
         /// Shuffles the deck and deals cards to players
         /// </summary>
-        public void Deal()
+        public static void Deal()
         {
             Deck.Shuffle();
             while (Deck.Cards.Count > 0)
@@ -42,7 +42,7 @@ namespace WarGame.Core.Game_Logic
             }
         }
 
-        public void AddPlayer(string name, Player player) {
+        public static void AddPlayer(string name, Player player) {
             Players[name] = player;
         }
     }

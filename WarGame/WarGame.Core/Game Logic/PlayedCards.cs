@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using WarGame.Core.Enums;
-using WarGame.Core.Cards;
+﻿using WarGame.Core.Cards;
 using WarGame.Core.Players;
-using WarGame.Core.Game_Logic;
 
 namespace WarGame.Core.Game_Logic
 {
@@ -16,6 +9,7 @@ namespace WarGame.Core.Game_Logic
         /// Cards currently in play
         /// </summary>
         public static Dictionary<string, Card> Cards;
+        public static string Winner;
         /// <summary>
         /// Holds which players played which cards
         /// </summary>
@@ -33,9 +27,30 @@ namespace WarGame.Core.Game_Logic
         public static void PlayCard(Player player, Card card)
         {
             Cards[player.Name] = card;
-            Game.Message = $"{player.Name} played the {card.Rank} of {card.Suit}";
             Pot.AddCard(card);
-            Thread.Sleep(500);
+        }
+        /// <summary>
+        /// Compares the cards, returns the winning player
+        /// </summary>
+        /// <param name="card1"></param>
+        /// <param name="card2"></param>
+        /// <returns></returns>
+        public static List<KeyValuePair<string, Card>> CompareCards(Dictionary<string, Card> cards)
+        {
+            var highestRank = cards.Max(x => x.Value.Rank); //x is a temporary variable for a hidden loop, that extracts the rank
+            var victors = cards //just for naming
+                .Where(x => x.Value.Rank == highestRank) //looks at each Value, where the card is the same as the highest rank
+                .ToList();//converts it to a list of key and value pairs
+            if (victors.Count == 1)
+            {
+                return victors; //returns the winner and their card
+            }
+            else
+            {
+                var warmongers = victors.ToDictionary(victor => victor.Key, victor => victor.Value); //makes a dictionary 
+                                                                                                    //for recursion
+                return CompareCards(warmongers); //keeps running the method until there is but one winner
+            }
         }
     }
 }

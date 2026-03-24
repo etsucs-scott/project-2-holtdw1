@@ -3,7 +3,6 @@ using WarGame.Core.Players;
 
 
 Game.Functional = true;
-Dealer dealer = new();
 int menuOption; //was causing issues with validation later, so I had to assign this 
 while (Game.Functional == true)
 {
@@ -51,20 +50,24 @@ while (Game.Functional == true)
                     names.Add(playerName);  
                     Console.WriteLine(""); //for readability
                     Console.WriteLine($"{names[i]} added to the game! Players created: {i + 1} / {playersToMake}");
-                    Thread.Sleep(1000);
+                    Thread.Sleep(553);
                     Console.Clear();
                     break;
                 }
             }
         }
 
-        Table.MakePlayers(playersToMake, names, dealer);
-        dealer.Deal();
+        Table.MakePlayers(playersToMake, names);
+        Dealer.Deal();
 
-        foreach (Player player in dealer.Players.Values)
+        foreach (Player player in Dealer.Players.Values)
         {
             PlayerHands.AddHand(player, player.PlayerHand);
         }
+
+        Console.WriteLine("It is recommended to run the console window at about _______\n Press enter to continue");
+        //or just make the output need to match the input
+        //Console.ReadLine(); -----------------------------------------------------------------------------------lookie here
 
         Console.WriteLine("That's all for now!");
         Thread.Sleep(1000);

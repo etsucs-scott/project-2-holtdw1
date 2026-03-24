@@ -37,8 +37,16 @@ namespace WarGame.Core.Game_Logic
             foreach(Card card in Cards)//hopefully this will increment through the list, and operate on each card
             {
                 player.PlayerHand.AddCard(card);
-                Cards.Remove(card);
             }
+            Cards.Clear();
+        }
+        /// <summary>
+        /// Checks each player's cards, adds them to the pot, and gives all to the winner
+        /// </summary>
+        /// <param name="players"></param>
+        public static void CompareCards(List<Card> cards)
+        {
+            Cards.Max(x => x.Rank);
         }
     }
 }
