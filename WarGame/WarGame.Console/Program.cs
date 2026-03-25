@@ -1,8 +1,10 @@
-﻿using WarGame.Core.Game_Logic;
+﻿using System;
+using WarGame.Core.Game_Logic;
 using WarGame.Core.Players;
 
 
 Game.Functional = true;
+Game.Winner = false;
 int menuOption; //was causing issues with validation later, so I had to assign this 
 while (Game.Functional == true)
 {
@@ -64,11 +66,30 @@ while (Game.Functional == true)
         {
             PlayerHands.AddHand(player, player.PlayerHand);
         }
+        KeyValuePair<string, Player> Player_1 = Dealer.Players.ElementAt(0);
+        KeyValuePair<string, Player> Player_2 = Dealer.Players.ElementAt(1);
+        KeyValuePair<string, Player>? Player_3 = Dealer.Players.ElementAt(2);
+        KeyValuePair<string, Player>? Player_4 = Dealer.Players.ElementAt(3);
 
-        Console.WriteLine("It is recommended to run the console window at about _______\n Press enter to continue");
-        //or just make the output need to match the input
-        //Console.ReadLine(); -----------------------------------------------------------------------------------lookie here
+        while (Game.Winner == false)
+        {
+            foreach (Player player in Dealer.Players.Values)
+            {
+                PlayedCards.PlayCard(Dealer.Players.ElementAt(0).Value, Dealer.Players.ElementAt(0).Value.PlayerHand.PlayCard());
+                PlayedCards.PlayCard(Dealer.Players.ElementAt(1).Value, Dealer.Players.ElementAt(1).Value.PlayerHand.PlayCard());
+                PlayedCards.PlayCard(Dealer.Players.ElementAt(2).Value, Dealer.Players.ElementAt(2).Value.PlayerHand.PlayCard());
+                PlayedCards.PlayCard(Dealer.Players.ElementAt(3).Value, Dealer.Players.ElementAt(3).Value.PlayerHand.PlayCard());
+            }
+            Console.WriteLine($"Player 1: {Player_1} plays the {PlayedCards.Cards.ElementAt(0).Value.Rank} of {PlayedCards.Cards.ElementAt(0).Value.Suit}");
+            Console.WriteLine($"Player 2: {Player_2} plays the {PlayedCards.Cards.ElementAt(0).Value.Rank} of {PlayedCards.Cards.ElementAt(0).Value.Suit}");
+            Console.WriteLine($"Player 3: {Player_3} plays the {PlayedCards.Cards.ElementAt(0).Value.Rank} of {PlayedCards.Cards.ElementAt(0).Value.Suit}");
+            Console.WriteLine($"Player 4: {Player_4} plays the {PlayedCards.Cards.ElementAt(0).Value.Rank} of {PlayedCards.Cards.ElementAt(0).Value.Suit}");
+            Thread.Sleep(500);
 
+            Console.WriteLine($"{PlayedCards.Winner} wins the hand with the {PlayedCards.CompareCards(PlayedCards.Cards)}");
+            Pot.WinCards(Dealer.Players[(PlayedCards.Winner)]);
+        }
+        /////////////////////////////////Some reminders - work out null players. 
         Console.WriteLine("That's all for now!");
         Thread.Sleep(1000);
     }

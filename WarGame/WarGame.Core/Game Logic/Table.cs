@@ -43,33 +43,8 @@ namespace WarGame.Core.Game_Logic
                 {
                     Player player = new Player(names[i]);
                     PlayersMade++;//this is here to make sure our loop breaks
-                    Dealer.AddPlayer(names[i], player);//index the player's key and value to the dealer's dictonary
+                    Dealer.AddPlayer(names[i], player);//index the player's key and value to the dealer's dictonary 
                 }
-            }
-        }
-        /// <summary>
-        /// Removes a player at their key value
-        /// </summary>
-        /// <param name="player"></param>
-        public static void RemovePlayer(Player player)
-        {
-            if (PlayerCount >= 1)
-            {
-                Game.Message = $"Enter the name of the player you want to remove: (Case sensitive)";
-                if (Dealer.Players.ContainsKey(Game.Input))
-                {
-                    Dealer.Players.Remove(Game.Input); //prompt the user in the console to insert the name
-                    PlayerCount--;
-                    Game.Message = $"Player: {Game.Input} removed.";
-                }
-                else
-                {
-                    Game.Message = $"The player ({Game.Input}) doesn't exist. Try again, or check case and spelling";
-                }
-            }
-            else
-            {
-                Game.Message = "You don't have any players yet.";
             }
         }
     }

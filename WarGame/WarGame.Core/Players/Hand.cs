@@ -32,9 +32,9 @@ namespace WarGame.Core.Players
         /// Remove a card from a hand
         /// </summary>
         /// <param name="card"></param>
-        public void RemoveCard()
+        public Card PlayCard()
         {
-            Cards.Dequeue();
+            return Cards.Dequeue();
         }
 
     }

@@ -17,5 +17,6 @@ namespace WarGame.Core.Game_Logic
         /// </summary>
         public static string Input { get; set; }
         public static bool Functional { get; set; }
+        public static bool Winner { get; set; }
     }
 }

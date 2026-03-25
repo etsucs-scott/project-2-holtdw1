@@ -43,6 +43,7 @@ namespace WarGame.Core.Game_Logic
                 .ToList();//converts it to a list of key and value pairs
             if (victors.Count == 1)
             {
+                Winner = victors.ElementAt(0).Key;
                 return victors; //returns the winner and their card
             }
             else
