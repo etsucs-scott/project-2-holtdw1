@@ -41,7 +41,7 @@ namespace WarGame.Core.Game_Logic
             {
                 for (int i = 0; i < players; i++)
                 {
-                    Player player = new Player(names[i]);
+                    Player player = new Player(names[i], i);
                     PlayersMade++;//this is here to make sure our loop breaks
                     Dealer.AddPlayer(names[i], player);//index the player's key and value to the dealer's dictonary 
                 }

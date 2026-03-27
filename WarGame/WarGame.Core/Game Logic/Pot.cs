@@ -39,6 +39,7 @@ namespace WarGame.Core.Game_Logic
                 player.PlayerHand.AddCard(card);
             }
             Cards.Clear();
+            PlayedCards.Cards.Clear();
         }
     }
 }

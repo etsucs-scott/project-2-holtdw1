@@ -32,9 +32,16 @@ namespace WarGame.Core.Players
         /// Remove a card from a hand
         /// </summary>
         /// <param name="card"></param>
-        public Card PlayCard()
+        public Card? PlayCard(Player player)
         {
-            return Cards.Dequeue();
+            if (player.Eliminated == true || player.PlayerHand.Cards.Count == 0)
+            {
+                return null;
+            }
+            else
+            {
+                return Cards.Dequeue();
+            }
         }
 
     }

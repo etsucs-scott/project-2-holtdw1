@@ -5,6 +5,7 @@ using WarGame.Core.Players;
 
 Game.Functional = true;
 Game.Winner = false;
+Game.RoundLimit = 10000;
 int menuOption; //was causing issues with validation later, so I had to assign this 
 while (Game.Functional == true)
 {
@@ -66,32 +67,53 @@ while (Game.Functional == true)
         {
             PlayerHands.AddHand(player, player.PlayerHand);
         }
-        KeyValuePair<string, Player> Player_1 = Dealer.Players.ElementAt(0);
-        KeyValuePair<string, Player> Player_2 = Dealer.Players.ElementAt(1);
-        KeyValuePair<string, Player>? Player_3 = Dealer.Players.ElementAt(2);
-        KeyValuePair<string, Player>? Player_4 = Dealer.Players.ElementAt(3);
+
+        int PlayedRounds = 0;
 
         while (Game.Winner == false)
         {
-            foreach (Player player in Dealer.Players.Values)
+            if (PlayedRounds == Game.RoundLimit)
             {
-                PlayedCards.PlayCard(Dealer.Players.ElementAt(0).Value, Dealer.Players.ElementAt(0).Value.PlayerHand.PlayCard());
-                PlayedCards.PlayCard(Dealer.Players.ElementAt(1).Value, Dealer.Players.ElementAt(1).Value.PlayerHand.PlayCard());
-                PlayedCards.PlayCard(Dealer.Players.ElementAt(2).Value, Dealer.Players.ElementAt(2).Value.PlayerHand.PlayCard());
-                PlayedCards.PlayCard(Dealer.Players.ElementAt(3).Value, Dealer.Players.ElementAt(3).Value.PlayerHand.PlayCard());
+                Console.WriteLine("The war has taken its toll. There will be no victor this day.");
+                Console.WriteLine("The war is over.\n\n");
+                Thread.Sleep(1000);
+                Console.WriteLine("Press enter to return to the menu");
+                Console.ReadLine();
+                Game.Winner = true;
             }
-            Console.WriteLine($"Player 1: {Player_1} plays the {PlayedCards.Cards.ElementAt(0).Value.Rank} of {PlayedCards.Cards.ElementAt(0).Value.Suit}");
-            Console.WriteLine($"Player 2: {Player_2} plays the {PlayedCards.Cards.ElementAt(0).Value.Rank} of {PlayedCards.Cards.ElementAt(0).Value.Suit}");
-            Console.WriteLine($"Player 3: {Player_3} plays the {PlayedCards.Cards.ElementAt(0).Value.Rank} of {PlayedCards.Cards.ElementAt(0).Value.Suit}");
-            Console.WriteLine($"Player 4: {Player_4} plays the {PlayedCards.Cards.ElementAt(0).Value.Rank} of {PlayedCards.Cards.ElementAt(0).Value.Suit}");
-            Thread.Sleep(500);
+            foreach (Player? player in Dealer.Players.Values)
+            {
+                if (player.PlayerHand.Cards.Count == 52)
+                {
+                    Console.WriteLine($"{player.Name} has obtained every last soldier. All are loyal to them. The ones who aren't have submitted.");
+                    Game.Winner = true;
+                }
+                var playedcard = player.PlayerHand.PlayCard(player);
 
-            Console.WriteLine($"{PlayedCards.Winner} wins the hand with the {PlayedCards.CompareCards(PlayedCards.Cards)}");
+                if (playedcard == null)
+                {
+                    player.Eliminated = true;
+                    Console.WriteLine($"Player {player.ID + 1}: {player.Name} has perished in the war. They are no longer");
+                    continue;
+                }
+
+                else
+                {
+                    PlayedCards.PlayCard(player, playedcard);
+                    Console.WriteLine($"Player {player.ID + 1}: {player.Name} plays the {playedcard.Rank} of {playedcard.Suit}");
+                    //Thread.Sleep(500);
+                }
+            }
+
+            Console.WriteLine($"{PlayedCards.Winner} wins the hand with the {PlayedCards.CompareCards(PlayedCards.Cards)}\n\n");
             Pot.WinCards(Dealer.Players[(PlayedCards.Winner)]);
+            PlayedRounds++;
+            //Thread.Sleep(1000);
+            //Console.Clear();
         }
-        /////////////////////////////////Some reminders - work out null players. 
-        Console.WriteLine("That's all for now!");
+        Console.WriteLine("The war is over.");
         Thread.Sleep(1000);
+        Console.WriteLine("");
     }
     if (menuOption == 2)
     {

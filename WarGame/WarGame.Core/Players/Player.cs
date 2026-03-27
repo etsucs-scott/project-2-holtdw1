@@ -20,10 +20,15 @@ namespace WarGame.Core.Players
         /// The hand of a player
         /// </summary>
         public Hand PlayerHand { get; set; }
+        /// <summary>
+        /// If the player is eliminated
+        /// </summary>
         public bool Eliminated { get; set; }
-        public Player(string name) 
+        public int ID { get; set; }
+        public Player(string name, int id) 
         {
             Name = name;
+            ID = id;
             PlayerHand = new(new Queue<Card>());
         }
     }

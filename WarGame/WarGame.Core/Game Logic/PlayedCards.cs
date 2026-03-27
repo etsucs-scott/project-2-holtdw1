@@ -49,7 +49,24 @@ namespace WarGame.Core.Game_Logic
             else
             {
                 var warmongers = victors.ToDictionary(victor => victor.Key, victor => victor.Value); //makes a dictionary 
-                                                                                                    //for recursion
+                                                                                                     //for recursion
+                foreach (var victor in victors)
+                {
+                    //disclaimer: I got AI to help me out here. I get lost with indexing
+
+                    var player = Dealer.Players[victor.Key]; // this is the index at the player's name
+                    if (player.PlayerHand.Cards.Count == 0)
+                    {
+                        player.Eliminated = true;
+                        warmongers.Remove(victor.Key);
+                        Game.Message = $"{victor.Key} has perished";
+                        break; //after removing them from everything, break the loop
+                    }
+                    var newCard = player.PlayerHand.PlayCard(player); // play a new card, and put it in a temp
+                    warmongers[victor.Key] = newCard; // store it in the dictionary I just made
+
+                    //So hopefully (if I understand this correctly) this doesn't overflow my stack
+                }
                 return CompareCards(warmongers); //keeps running the method until there is but one winner
             }
         }
